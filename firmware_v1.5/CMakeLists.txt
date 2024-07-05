@@ -12,7 +12,6 @@ target_sources(app PRIVATE
     src/led.c
     src/audio.c
     src/codec.c
-    src/camera.c
     src/controls.c
     src/battery.c
     src/settings.c

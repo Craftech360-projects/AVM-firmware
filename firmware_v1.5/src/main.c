@@ -8,7 +8,6 @@
 #include "config.h"
 #include "audio.h"
 #include "codec.h"
-#include "camera.h"
 #include "controls.h"
 #include "battery.h"
 #include "settings.h"
@@ -170,23 +169,20 @@ int main(void)
 	ASSERT_OK(battery_start());
 	ASSERT_OK(wdt_feed(wdt_dev, 0));
 
-	// Camera start
-#ifdef ENABLE_CAMERA
-	ASSERT_OK(camera_start());
-	ASSERT_OK(wdt_feed(wdt_dev, 0));
-#endif
-
 	// Transport start
 	set_transport_callbacks(&transport_callbacks);
 	ASSERT_OK(transport_start());
 	set_allowed(is_allowed);
 	ASSERT_OK(wdt_feed(wdt_dev, 0));
 
+#if 0
 	// Controls
 #ifdef ENABLE_BUTTON
 	set_button_handler(on_button_pressed);
 	ASSERT_OK(start_controls());
 #endif
+#endif
+
 	ASSERT_OK(wdt_feed(wdt_dev, 0));
 
 	// Codec start
